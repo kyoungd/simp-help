@@ -70,11 +70,11 @@ def chatBot(userString):
         for tg in data["intents"]:
             if tg["tag"] == topic:
                 responses = tg['responses']
-        print(random.choice(responses))
+        return (random.choice(responses))
 
     # ELSE: we print out a confused bot response
     else:
-        print("Sorry, I didn' understand. Try asking again.")
+        return ("Sorry, I didn' understand. Try asking again.")
 
 
 if __name__ == "__main__":
