@@ -12,8 +12,8 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
 # ----- Setup -----
-# nltk_path = os.environ.get("NLTK_ROOT", '~/nltk_data/')
-# nltk.data.path.append(nltk_path)
+nltk_path = os.environ.get("NLTK_ROOT", '~/nltk_data/')
+nltk.data.path.append(nltk_path)
 lemmatizer = WordNetLemmatizer()
 
 with open("intents.json") as file:
