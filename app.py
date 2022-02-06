@@ -16,6 +16,4 @@ def help_view():
     return { 'status': 'OK', 'data': result }
 
 if __name__ == "__main__":
-    env_port = int(os.environ.get('HOST_PORT', '5000'))
-    env_host = os.environ.get('HOST_ADDR', '0.0.0.0')
-    app.run(debug=False, host=env_host, port=env_port)
+    app.run(debug=False)
