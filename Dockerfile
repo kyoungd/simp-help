@@ -23,4 +23,4 @@ WORKDIR /src
 RUN python3 -c "import nltk; nltk.download(['punkt', 'wordnet', 'omw-1.4'])"
 
 EXPOSE  5000
-CMD ["python3", "-m", "flask", "run", "--host=0.0.0.0"]
+CMD ["python3", "-m", "flask", "run"]
