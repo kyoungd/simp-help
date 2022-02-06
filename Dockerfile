@@ -1,9 +1,10 @@
 from pytorch/pytorch:latest
 
-COPY *.py /
-COPY *.pkl /
-COPY *.json /
+COPY *.py /src/
+COPY *.pkl /src/
+COPY *.json /src/
 COPY nltk.txt /
+COPY nltk.txt /src/
 COPY chatbot_Model.h5 /src/chatbot_Model.h5
 # RUN mkdir -p ~/nltk_data
 # RUN mkdir -p ~/nltk_data/chunkers
@@ -19,7 +20,7 @@ COPY chatbot_Model.h5 /src/chatbot_Model.h5
 
 RUN pip install numpy pandas nltk Flask flask-cors tensorflow tensorflow-gpu
 
-WORKDIR /
+WORKDIR /src
 
 # RUN python3 -c "import nltk; nltk.download(['punkt', 'wordnet', 'omw-1.4'])"
 
