@@ -11,6 +11,7 @@ from nltk.stem import WordNetLemmatizer
 from tensorflow.keras.models import load_model
 
 # ----- Setup -----
+nltk.data.path.append('~/nltk_data/')
 lemmatizer = WordNetLemmatizer()
 
 with open("intents.json") as file:
@@ -53,29 +54,32 @@ def bag_of_words(userString):
 
 
 def chatBot(userString):
-    currentBag = bag_of_words(userString)
-    result = model.predict(np.array([currentBag]))[0]
-    # print("Result: ", result, "\n")
+    try:
+        currentBag = bag_of_words(userString)
+        result = model.predict(np.array([currentBag]))[0]
+        # print("Result: ", result, "\n")
 
-    # get the highest numerical value prediction
-    result_index = np.argmax(result)
-    # print("Highest Result Index: ", result_index, "\n")
+        # get the highest numerical value prediction
+        result_index = np.argmax(result)
+        # print("Highest Result Index: ", result_index, "\n")
 
-    # get the topic associated to the highest numerical value prediction
-    topic = topics[result_index]
+        # get the topic associated to the highest numerical value prediction
+        topic = topics[result_index]
 
-    # IF: percentage is greater then 75%
-    if result[result_index] > 0.80:
-        # we grab the list of responds and choose one at random
-        for tg in data["intents"]:
-            if tg["tag"] == topic:
-                responses = tg['responses']
-        return (random.choice(responses))
+        # IF: percentage is greater then 75%
+        if result[result_index] > 0.80:
+            # we grab the list of responds and choose one at random
+            for tg in data["intents"]:
+                if tg["tag"] == topic:
+                    responses = tg['responses']
+            return (random.choice(responses))
 
-    # ELSE: we print out a confused bot response
-    else:
-        return ("Sorry, I didn' understand. Try asking again.")
-
+        # ELSE: we print out a confused bot response
+        else:
+            return ("Sorry, I didn' understand. Try asking again.")
+    except Exception as e:
+        outmsg = str(e)
+        return (outmsg)
 
 if __name__ == "__main__":
     # ----- Main -----

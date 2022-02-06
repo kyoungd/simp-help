@@ -13,7 +13,7 @@ def help_view():
     message = request.json
     q = message['question']
     result = chatBot(q)
-    return result
+    return { 'status': 'OK', 'data': result }
 
 if __name__ == "__main__":
     app.run()
