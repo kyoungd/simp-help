@@ -1,4 +1,4 @@
-
+import os
 from flask import Flask, render_template, request
 from run_model import chatBot
 
@@ -16,4 +16,6 @@ def help_view():
     return { 'status': 'OK', 'data': result }
 
 if __name__ == "__main__":
-    app.run()
+    env_port = int(os.environ.get('HOST_PORT', '5000'))
+    env_host = os.environ.get('HOST_ADDR', '0.0.0.0')
+    app.run(debug=False, host=env_host, port=env_port)
