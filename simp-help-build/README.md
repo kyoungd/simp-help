@@ -6,7 +6,7 @@ docker build -t simp-help .
 
 # Create and run Docker container
 docker run -d -p [host port]:[container port] [docker image] 
-docker run -d -p 5000:5000 simp-help 
+docker run -p 5000:5000 simp-help 
 
 # stop docker
 docker stop [processId]
@@ -16,3 +16,15 @@ docker images
 
 # How to see all containers
 docker ps
+
+
+
+## -------------------------------------------------
+sudo heroku auth:login
+sudo heroku container:login
+
+sudo docker tag simp-help:latest registry.heroku.com/simp-help/web
+sudo docker push registry.heroku.com/simp-help/web
+heroku container:release web -a simp-help
+
+heroku logs
